@@ -68,3 +68,16 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+@keyframes confetti {
+  0% { transform: translateY(0) rotate(0); }
+  100% { transform: translateY(300px) rotate(360deg); }
+}
+
+.confetti {
+  position: absolute;
+  top: -10px;
+  width: 8px;
+  height: 8px;
+  background: #22c55e;
+  animation: confetti 1.5s linear infinite;
+}
