@@ -1,5 +1,16 @@
 export default function BingoBoard({ board, marked, onToggle }) {
+    // Trigger haptic feedback (Telegram Web App or fallback)
+const hapticFeedback = (type = "light") => {
+  if (window.Telegram.WebApp?.HapticFeedback) {
+    window.Telegram.WebApp.HapticFeedback[type]();
+  } else if (navigator.vibrate) {
+    // fallback for normal browser: light vibration
+    navigator.vibrate(type === "light" ? 50 : 100);
+  }
+};
+
   return (
+    
     <div className="grid grid-cols-5 gap-2">
       {board.map((col, cIdx) =>
         col.map((num, rIdx) => {
