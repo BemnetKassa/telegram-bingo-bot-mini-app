@@ -8,6 +8,6 @@ export default defineConfig({
 
  server: {
     // Allow requests from ngrok host
-    allowedHosts: ["5d634135be9a.ngrok-free.app"],
+    allowedHosts: ["269c5c7a159d.ngrok-free.app"],
   },
 })
