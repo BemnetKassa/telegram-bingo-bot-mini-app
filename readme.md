@@ -1,109 +1,93 @@
-# Telegram Bingo Mini App
+🎱 Telegram Bingo Mini App
+Project Overview
 
-## Project Overview
+Telegram Bingo Mini App is a portfolio-ready, production-style project that brings the classic Bingo game to Telegram using Telegram Mini Apps.
+Users register via a Telegram Bot, press Play, and are redirected to an interactive Bingo game built with React and Tailwind CSS.
 
-Telegram Bingo Mini App is a portfolio-ready, production-style project that brings the classic Bingo game to Telegram. Users register via a Telegram Bot and play interactive, real-time multiplayer Bingo inside a Telegram Mini App. The bot manages onboarding and navigation, while the Mini App delivers the gameplay experience.
+The project is being developed incrementally:
 
-## Project Objectives
+✅ Bot onboarding & Mini App launch
 
-- Build a Telegram Bot for user onboarding
-- Launch a secure Telegram Mini App
-- Implement real-time multiplayer Bingo gameplay
-- Ensure fair play, synchronization, and scalability
-- Create a portfolio-ready production-style project
+✅ Fully playable single-player Bingo UI
 
-## Technology Stack
+🚧 Multiplayer & backend logic (upcoming phases)
 
-- **Frontend (Mini App):** React, Tailwind CSS, Telegram WebApp SDK
-- **Backend:** Node.js, Express, Socket.io
-- **Database:** Supabase / Firebase / MongoDB
-- **Hosting:** Vercel (Frontend), Railway/Render (Backend)
+Key Features (Current)
+🤖 Telegram Bot
 
----
+/start command with inline buttons
 
-## Project Phases & Timeline
+User registration using Telegram ID
 
-### Phase 1: Planning & Setup _(1 Day)_
+Secure Play button that opens the Mini App
 
-- Define game rules and win conditions
-- Create Telegram Bot via BotFather
-- Setup Git repository and project structure
-- Choose database and hosting platform
+HTTPS Mini App support via ngrok
 
-### Phase 2: Telegram Bot Development _(1 Day)_
+🎮 Mini App (Frontend – Phase 3)
 
-- Implement `/start` command
-- User registration using Telegram user ID
-- Store user data in database
-- Add Play button to open Mini App
+🚀 Landing Page
 
-### Phase 3: Mini App Frontend _(2–3 Days)_
+Welcome screen before entering the game
 
-- Setup React + Tailwind project
-- Integrate Telegram WebApp SDK
-- Build Bingo board UI
-- Create lobby and room UI
-- Responsive mobile-first design
+Start Game button
 
-### Phase 4: Backend & Game Logic _(2 Days)_
+🎱 Bingo Game Board
 
-- Generate Bingo cards
-- Random number calling
-- Mark numbers and validate input
-- Win detection logic
-- Store game sessions
+Auto-generated Bingo card
 
-### Phase 5: Multiplayer & Real-time Sync _(2–3 Days)_
+Click-to-mark numbers
 
-- Implement Socket.io
-- Room creation & joining
-- Real-time updates for numbers and boards
-- Handle disconnects and reconnects
+🔤 B I N G O Progress Indicator
 
-### Phase 6: Security & Validation _(1 Day)_
+Visual progress tracking for completed lines
 
-- Validate Telegram Web App init data
-- Prevent fake requests
-- Server-side win verification
-- Basic anti-cheat mechanisms
+🏆 Win Detection
 
-### Phase 7: Testing & Deployment _(1–2 Days)_
+Detects completed lines
 
-- Unit and integration testing
-- Multiplayer stress testing
-- Deploy frontend and backend
-- Final bug fixes
+Animated BINGO win modal
 
----
+Win sound effect
 
-## Future Enhancements
+🔁 Reset & Replay
 
-- Coin or reward system
-- Tournaments
-- Leaderboards
-- Admin dashboard
-- Monetization (ads / premium rooms)
+Reset board
 
----
+Play again without reloading
 
-## Estimated Total Duration
+🎨 Modern UI
 
-**Approximately 10–12 days** with consistent development.
+Tailwind CSS
 
----
+Mobile-first design
 
-## Getting Started
+Smooth animations and overlays
 
-1. **Clone the repository**
-2. **Set up the Telegram Bot** via [BotFather](https://core.telegram.org/bots#botfather)
-3. **Configure environment variables** for backend and frontend
-4. **Install dependencies** for both frontend and backend
-5. **Run backend server** (Express + Socket.io)
-6. **Run frontend (React) app**
-7. **Deploy to Vercel (frontend) and Railway/Render (backend)**
+Technology Stack
+Frontend (Mini App)
 
----
+React (Vite)
 
-## License
+Tailwind CSS
 
-MIT
+Telegram WebApp SDK
+
+ngrok (HTTPS for local development)
+
+Backend (Planned)
+
+Node.js
+
+Express
+
+Socket.io
+
+Database (Planned)
+
+Supabase / Firebase / MongoDB
+
+Hosting (Planned)
+
+Vercel (Frontend)
+
+Railway / Render (Backend)
