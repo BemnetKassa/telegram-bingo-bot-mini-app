@@ -1,15 +1,23 @@
 export function useTelegram() {
   const tg = window.Telegram?.WebApp;
 
-  console.log("Telegram object:", window.Telegram);
-  console.log("WebApp object:", tg);
-  console.log("InitDataUnsafe:", tg?.initDataUnsafe);
+  if (tg) {
+    tg.ready();
+    return {
+      tg,
+      user: tg.initDataUnsafe?.user || null,
+      platform: tg.platform,
+    };
+  }
 
-  const user = tg?.initDataUnsafe?.user;
-
+  // Desktop / Browser fallback
   return {
-    tg,
-    user,
-    isReady: Boolean(user),
+    tg: null,
+    user: {
+      id: -1,
+      first_name: "Guest",
+      username: "desktop_user",
+    },
+    platform: "fallback",
   };
 }
