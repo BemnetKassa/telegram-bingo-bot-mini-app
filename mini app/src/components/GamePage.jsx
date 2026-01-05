@@ -6,11 +6,17 @@ import winSound from "../assets/sounds/win.mp3";
 
 const BINGO = ["B", "I", "N", "G", "O"];
 
-export default function GamePage({ board, marked, onToggle, onReset }) {
+export default function GamePage({
+  board,
+  marked,
+  onToggle,
+  onReset,
+  onBack,
+}) {
   const completedLines = countCompletedLines(marked);
   const hasWon = completedLines >= 5;
 
-  // ✅ Play win sound when bingo is achieved
+  // 🔊 Play win sound only once
   useEffect(() => {
     if (hasWon && !window.__bingoWonPlayed) {
       playSound(winSound, 0.8);
@@ -20,6 +26,27 @@ export default function GamePage({ board, marked, onToggle, onReset }) {
 
   return (
     <div className="relative bg-gray-800 p-6 rounded-xl w-96 space-y-4">
+
+      {/* 🔙 Top Controls */}
+      <div className="flex justify-between items-center">
+        <button
+          onClick={onBack}
+          className="text-sm text-gray-300 hover:text-white"
+        >
+          ← Back
+        </button>
+
+        <button
+          onClick={() => {
+            window.__bingoWonPlayed = false;
+            onReset();
+          }}
+          className="text-sm text-red-400 hover:text-red-300"
+        >
+          Reset
+        </button>
+      </div>
+
       {/* 🎯 BINGO Progress */}
       <div className="flex justify-center gap-2">
         {BINGO.map((letter, index) => (
@@ -44,18 +71,8 @@ export default function GamePage({ board, marked, onToggle, onReset }) {
         onToggle={hasWon ? () => {} : onToggle}
       />
 
-      {/* 🎮 Actions */}
+      {/* 🎮 Bottom Actions */}
       <div className="flex gap-2">
-        <button
-          onClick={() => {
-            window.__bingoWonPlayed = false; // reset sound flag
-            onReset();
-          }}
-          className="flex-1 bg-red-600 py-2 rounded-lg hover:bg-red-500"
-        >
-          Reset
-        </button>
-
         <button
           className="flex-1 bg-blue-600 py-2 rounded-lg hover:bg-blue-500"
         >
@@ -73,7 +90,7 @@ export default function GamePage({ board, marked, onToggle, onReset }) {
             <p>You completed the board!</p>
             <button
               onClick={() => {
-                window.__bingoWonPlayed = false; // reset sound flag
+                window.__bingoWonPlayed = false;
                 onReset();
               }}
               className="bg-green-600 px-4 py-2 rounded-lg hover:bg-green-500"

@@ -1,47 +1,39 @@
-import { useState } from "react";
-import LandingPage from "./components/LandingPage";
+import { useEffect, useState } from "react";
 import GamePage from "./components/GamePage";
+import LandingPage from "./components/LandingPage";
 import { generateBingoCard } from "./utils/bingo";
-import { useTelegram } from "./hooks/useTelegram";
 import "./index.css";
 
 function App() {
-  const { user, isReady } = useTelegram();
+  const [screen, setScreen] = useState("landing"); // landing | game
+  const [board, setBoard] = useState([]);
+  const [marked, setMarked] = useState([]);
 
-  const [screen, setScreen] = useState("landing");
-  const [board, setBoard] = useState(generateBingoCard());
-  const [marked, setMarked] = useState({});
-
-  if (!isReady) {
-    return (
-      <div className="min-h-screen bg-gray-900 text-white flex items-center justify-center">
-        Loading user info...
-      </div>
-    );
-  }
-
+  // 🎱 Start game
   const startGame = () => {
-    setBoard(generateBingoCard());
-    setMarked({});
+    const newBoard = generateBingoCard();
+    setBoard(newBoard);
+    setMarked(Array(25).fill(false));
     setScreen("game");
   };
 
-  const toggleMark = (key) => {
-    setMarked((prev) => ({
-      ...prev,
-      [key]: !prev[key],
-    }));
+  // ✅ Toggle cell
+  const toggleMark = (index) => {
+    setMarked((prev) =>
+      prev.map((val, i) => (i === index ? !val : val))
+    );
   };
 
+  // 🔄 Reset game
   const resetGame = () => {
     setBoard(generateBingoCard());
-    setMarked({});
+    setMarked(Array(25).fill(false));
   };
 
   return (
     <div className="min-h-screen bg-gray-900 text-white flex items-center justify-center">
       {screen === "landing" && (
-        <LandingPage user={user} onStart={startGame} />
+        <LandingPage onStart={startGame} />
       )}
 
       {screen === "game" && (
@@ -50,6 +42,7 @@ function App() {
           marked={marked}
           onToggle={toggleMark}
           onReset={resetGame}
+          onBack={() => setScreen("landing")}
         />
       )}
     </div>
