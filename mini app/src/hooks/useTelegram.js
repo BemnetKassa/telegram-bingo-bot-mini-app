@@ -1,23 +1,26 @@
+import { useEffect, useState } from "react";
+
 export function useTelegram() {
-  const tg = window.Telegram?.WebApp;
+  const [user, setUser] = useState(null);
+  const [isReady, setIsReady] = useState(false);
 
-  if (tg) {
-    tg.ready();
-    return {
-      tg,
-      user: tg.initDataUnsafe?.user || null,
-      platform: tg.platform,
-    };
-  }
+  useEffect(() => {
+    const tg = window.Telegram?.WebApp;
 
-  // Desktop / Browser fallback
-  return {
-    tg: null,
-    user: {
-      id: -1,
-      first_name: "Guest",
-      username: "desktop_user",
-    },
-    platform: "fallback",
-  };
+    if (tg) {
+      tg.ready();
+      setUser(tg.initDataUnsafe?.user || null);
+      setIsReady(true);
+    } else {
+      // ✅ FALLBACK (Desktop / Browser)
+      setUser({
+        id: -1,
+        first_name: "Guest",
+        username: "guest_user",
+      });
+      setIsReady(true);
+    }
+  }, []);
+
+  return { user, isReady };
 }
